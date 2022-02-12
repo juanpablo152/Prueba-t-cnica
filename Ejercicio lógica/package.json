@@ -1,0 +1,17 @@
+{
+  "name": "script",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Pablo Valencia Quintero",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^17.0.17"
+  },
+  "dependencies": {
+    "csv-parse": "^5.0.4"
+  }
+}
