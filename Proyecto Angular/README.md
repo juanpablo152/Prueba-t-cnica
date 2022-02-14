@@ -1,3 +1,16 @@
+# Solución de prueba ténica
+Se llevo a cabo la solución de todo el punto.
+1. Se creo un componente llamado crud donde están las operaciones
+2. se creo un service para llevar a cabo la lógica
+3. Se crearon las interfaces para el correcto desarrollo del proyecto en la carpeta 'interfaces'
+4. Se creo una carpeta Guard con un archivo donde se lleva a cabo la validación para protección de rutas
+5. En el archivo environments.ts se agrego la api usada para el CRUD.
+6. El usurio para el login es: 
+  usuario: eve.holt@reqres.in
+  clave: juanpablo152
+7. se llevo el desarrollo responsive y animar algunos botones
+
+
 # PruebaTecnica
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.

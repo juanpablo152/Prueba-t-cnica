@@ -7,11 +7,13 @@ import { MaterialModule } from "../common/material/material.module";
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeSideBarComponent } from './home-side-bar/home-side-bar.component';
 import { HomeComponent } from './home.component';
+import { CrudComponent } from './crud/crud.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    HomeSideBarComponent
+    HomeSideBarComponent,
+    CrudComponent
   ],
   exports: [
   ],

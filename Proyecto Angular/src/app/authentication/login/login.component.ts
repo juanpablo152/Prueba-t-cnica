@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Token, UserLogin } from "src/app/interfaces/user.login";
 import { ToastService } from "src/app/services/toast.service";
 import { AuthService } from "../../services/auth.service";
 import { LoadingService } from "../../services/loading.service";
@@ -98,12 +99,20 @@ export class LoginComponent implements OnInit {
         const password = this.form.value["password"];
         localStorage.setItem("RememberMe", this.rememberUser ? "true" : "false");
         // validate credentials
+        const userToValidate: UserLogin = {email: user, password: password}
+        this.authService.Authentication(userToValidate).subscribe(({token}: Token) => {
+          this.authService.setToken(token);
+          this.loginInProgress = false;
+          this.router.navigateByUrl("/home/dashboard");
+          this.toastService.success(
+            "Bienvenido '" + this.authService.getNames({firstName: true, lastName: true}) + "'",
+            "Exito"
+          );
+        }, (error) => {
+          this.loginInProgress = false;
+          return this.toastService.error("El usuario no existe o no es correcto");
+        });
         //
-        this.toastService.success(
-          "Bienvenido '" + this.authService.getNames({firstName: true, lastName: true}) + "'",
-          "Exito"
-        );
-        this.router.navigateByUrl("/home/dashboard");
       }
     } catch (e) {
       console.log(e);

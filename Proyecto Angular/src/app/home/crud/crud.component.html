@@ -1,0 +1,93 @@
+<div>
+  <!-- header and title of section -->
+  <div class="dashboard-wraper">
+    <div class="header"></div>
+  </div>
+  <!-- Showing dashboard with information -->
+  <div class="ScrollBar dashboard-box-wrapper">
+    <div class="center">
+        <div class="container" *ngIf="viewForm">
+          <div class="simple-modal" tabindex="0">
+            <div class="simple-modal__content">
+              <header>
+                <h4>Editar usuario</h4>
+                <span (click)="showDialog('close')">X</span>
+              </header>
+              <div class="modal-main">
+                <form novalidate [formGroup]="form">
+                  <td>
+                    <tr>
+                      <label for="">Nombre</label>
+                    </tr>
+                    <tr>
+                      <input required="required" formControlName="name" type="text" placeholder="Nombre de la persona">
+                    </tr>
+                  </td>
+                  <td class="space">
+                    <tr>
+                      <label for="">Trabajo</label>
+                    </tr>
+                    <tr>
+                      <input required="required" formControlName="job" type="text" placeholder="Trabajo actual">
+                    </tr>
+                  </td>
+                </form>
+              </div>
+              <footer>
+                <button *ngIf="!addOrUpdate" style="float:right" (click)="addUser()">Guardar</button>
+                <button *ngIf="addOrUpdate" style="float:right"  (click)="updateUser()">Actualizar</button>
+              </footer>
+            </div>
+          </div>
+        </div>
+
+        <div class="">
+          <button class="addButton" (click)="showDialog('add')">
+            <span class="addButton-text">Agregar nuevo usuario</span>
+          </button>
+          <p class="titleTable">Usuarios</p>
+          <table mat-table [dataSource]="dataSource" class="table">
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef style="color: #000024;font-weight: bold;">Código</th>
+              <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef style="color: #000024;font-weight: bold;">Nombre</th>
+              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="job">
+              <th mat-header-cell *matHeaderCellDef style="color: #000024;font-weight: bold;">Trabajo</th>
+              <td mat-cell *matCellDef="let element">{{ element.job }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef style="color: #000024;font-weight: bold;">Acción</th>
+              <td mat-cell *matCellDef="let element">
+                <button class="addButton" (click)="updateUserStorage(element)">
+                  <span class="addButton-text">Actualizar</span>
+                </button>
+                <button class="addButton" (click)="deleteUser(element.id)">
+                  <span class="addButton-text">Eliminar</span>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+
+          <mat-paginator
+            [pageSizeOptions]="[5, 10, 20]"
+            showFirstLastButtons
+            aria-label="Select page of periodic elements"
+          >
+          </mat-paginator>
+        </div>
+    </div>
+  </div>
+</div>

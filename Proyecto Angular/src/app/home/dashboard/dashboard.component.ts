@@ -1,4 +1,6 @@
 import { Component, Injectable, OnInit } from "@angular/core";
+import { userCreated } from "src/app/interfaces/create.user";
+import { CrudService } from "src/app/services/crud.service";
 import { DashboardItem } from "../../interfaces/dashboard.item.type";
 import { DashboardService } from "../../services/dashboard.service";
 import { ToastService } from "../../services/toast.service";
@@ -12,7 +14,7 @@ import { ToastService } from "../../services/toast.service";
   providedIn: "root",
 })
 export class DashboardComponent implements OnInit {
-  public elements: DashboardItem[] = [];
+  public elements: userCreated[] = [];
   public loading = false;
   public ngxLoadingAnimationTypes = {
     chasingDots: "chasing-dots",
@@ -30,7 +32,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private dashboardService: DashboardService,
-    private toast: ToastService
+    private toast: ToastService,
+    private crudService: CrudService
   ) {}
 
 
@@ -44,7 +47,8 @@ export class DashboardComponent implements OnInit {
   public async getData() {
     try {
       this.loading = true;
-      this.elements = await this.dashboardService.getNewDashboardData();
+      // this.elements = await this.dashboardService.getNewDashboardData();
+      this.elements = await this.crudService.getAllUsers();
       this.loading = false;
     } catch (e) {
       console.log(e);
