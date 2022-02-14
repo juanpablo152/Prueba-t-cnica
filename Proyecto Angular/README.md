@@ -9,7 +9,7 @@ Se llevo a cabo la solución de todo el punto.
   usuario: eve.holt@reqres.in
   clave: juanpablo152
 7. se llevo el desarrollo responsive y animar algunos botones
-
+8. la fecha de creación que tienen los usuarios al ser creados es una fecha dada por el api haciendo referencia a otro pais.
 
 # PruebaTecnica
 
